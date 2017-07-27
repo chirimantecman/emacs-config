@@ -12,3 +12,5 @@ snippets/
 sql-indent/
 themes/
 tramp
+config-org/config.el
+*~
