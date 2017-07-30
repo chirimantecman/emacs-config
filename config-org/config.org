@@ -11,9 +11,61 @@ the file.
   (setq custom-file-path (concat user-emacs-directory "custom.el"))
   (unless (file-exists-p custom-file-path)
     (write-region "" nil custom-file-path))
+#+END_SRC
+
+** Backup and Auto-save Directories
+Create these directories, used later, to store backups and suto-saves.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Backups Directory.
+  (defvar backup-file-directory)
+  (setq backup-file-directory
+        (expand-file-name "backups" user-emacs-directory))
+  (unless (file-exists-p backup-file-directory)
+    (make-directory backup-file-directory))
+
+  ;; Auto-save Directory
+  (defvar autosave-file-directory)
+  (setq autosave-file-directory
+        (expand-file-name "autosaves/" user-emacs-directory))
+  (unless (file-exists-p autosave-file-directory)
+    (make-directory autosave-file-directory))
+#+END_SRC
+
+* General Defaults
+Some sane defaults taken mainly from [[https://github.com/durantschoon/.emacs.d][here]] and [[http://pages.sachachua.com/.emacs.d/Sacha.html#org7b1ada1][here]].
+** Emacs Customizations
+Store them in custom.el file.
+
+#+BEGIN_SRC emacs-lisp
   (setq custom-file custom-file-path)
 #+END_SRC
 
+** Y or N Should be Enough!
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Backups and Autosaves
+This keeps all backups in the 'backups' directory of your emacs user
+directory.  Autosave files are stored in the 'autosaves' directory. We
+keep all files, you never know.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Backup Directory.
+  (setq backup-directory-alist `(("." . ,backup-file-directory)))
+
+  ;; Autosave Directory.
+  (setq auto-save-file-name-transforms `((".*" ,autosave-file-directory t)))
+#+END_SRC
+
+** Deletion
+Delete region when typing, please!.
+
+#+BEGIN_SRC emacs-lisp
+  (delete-selection-mode t)
+#+END_SRC
 * Rest I - To be Organized.
 #+BEGIN_SRC emacs-lisp
   ;;--- CUSTOM, CONVENIENCE MACROS AND FUNCTIONS ---------------------------------
