@@ -66,9 +66,80 @@ Delete region when typing, please!.
 #+BEGIN_SRC emacs-lisp
   (delete-selection-mode t)
 #+END_SRC
+
+* Convenience Macros and Functions.
+** Navigation
+** Editing
+The following functions make editing a bit easier and faster. Key
+bindings are setup on the spot.
+*** indent-buffer
+Re-indent the whole buffer. The actual effect depends on the current
+mode.  Bound to <C-tab>.
+
+Taken from [[https://www.emacswiki.org/emacs/ReformatBuffer][emacswiki]].
+
+#+BEGIN_SRC emacs-lisp
+  (defun indent-buffer ()
+    (interactive)
+    (save-excursion
+      (indent-region (point-min) (point-max) nil)))
+  (global-set-key [C-tab] 'indent-buffer)
+#+END_SRC
+ 
+*** move-line-down / move-line-up
+Moves the current line down or up one position, switching places with
+the one below or above, respectively.  Bound to M-S-down and M-S-up.
+Some major or minor modes may have another meaning assigned to this
+key combination.
+
+Taken from [[http://whattheemacsd.com][whattheemacsd.com]].
+
+#+BEGIN_SRC emacs-lisp
+  (defun move-line-down ()
+    (interactive)
+    (let ((col (current-column)))
+      (forward-line)
+      (transpose-lines 1)
+      (forward-line -1)
+      (move-to-column col)))
+  (global-set-key [M-S-down] 'move-line-down)
+
+  (defun move-line-up ()
+    (interactive)
+    (let ((col (current-column)))
+      (transpose-lines 1)
+      (forward-line -2)
+      (move-to-column col)))
+  (global-set-key [M-S-up] 'move-line-up)
+#+END_SRC
+
+*** open-line-below / open-line-above.
+Opens a new line below or above the current one, and sets the point at
+the indent position, independently if where the point originally was.
+
+Taken from [[http://whattheemacsd.com][whattheemacsd.com]].
+
+#+BEGIN_SRC emacs-lisp
+  (defun open-line-below ()
+    (interactive)
+    (end-of-line)
+    (newline)
+    (indent-for-tab-command))
+  (global-set-key [C-return] 'open-line-below)
+
+  (defun open-line-above ()
+    (interactive)
+    (beginning-of-line)
+    (newline)
+    (forward-line -1)
+    (indent-for-tab-command))
+  (global-set-key [C-S-return] 'open-line-above)
+#+END_SRC
+
 * Rest I - To be Organized.
 #+BEGIN_SRC emacs-lisp
-  ;;--- CUSTOM, CONVENIENCE MACROS AND FUNCTIONS ---------------------------------
+  
+
 
   ;;------------------------------------------------------------------------------
   ;; rename-modeline - reduce clut in modeline by renaming modeline lighters.
@@ -97,50 +168,7 @@ Delete region when typing, please!.
     (end-of-buffer)
     (dired-next-line -1))
 
-  ;;------------------------------------------------------------------------------
-  ;; move-line-down - moves the current line down 1 line, if possible.
-  ;; (taken from whattheemacsd.com)
-  ;;------------------------------------------------------------------------------
-  (defun move-line-down ()
-    (interactive)
-    (let ((col (current-column)))
-      (forward-line)
-      (transpose-lines 1)
-      (forward-line -1)
-      (move-to-column col)))
-
-  ;;------------------------------------------------------------------------------
-  ;; move-line-up - moves the current line up 1 line, if possible.
-  ;; (taken from whattheemacsd.com)
-  ;;------------------------------------------------------------------------------
-  (defun move-line-up ()
-    (interactive)
-    (let ((col (current-column)))
-      (transpose-lines 1)
-      (forward-line -2)
-      (move-to-column col)))
-
-  ;;------------------------------------------------------------------------------
-  ;; open-line-below - create a new line below the current, even in midsentence.
-  ;; (taken from whattheemacsd.com)
-  ;;------------------------------------------------------------------------------
-  (defun open-line-below ()
-    (interactive)
-    (end-of-line)
-    (newline)
-    (indent-for-tab-command))
-
-  ;;------------------------------------------------------------------------------
-  ;; open-line-above - create a new line above the current, even in midsentence.
-  ;; (taken from whattheemacsd.com)
-  ;;------------------------------------------------------------------------------
-  (defun open-line-above ()
-    (interactive)
-    (beginning-of-line)
-    (newline)
-    (forward-line -1)
-    (indent-for-tab-command))
-
+  
   ;;------------------------------------------------------------------------------
   ;; magit-status - opens magit status window as the only window in frame.
   ;; (taken from whattheemacsd.com)
