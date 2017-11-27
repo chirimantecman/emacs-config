@@ -16,3 +16,5 @@ themes/
 tramp
 config-org/config.el
 *~
+/config-org/config.pdf
+/config-org/config.tex

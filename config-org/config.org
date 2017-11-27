@@ -14,7 +14,7 @@ the file.
 #+END_SRC
 
 ** Backup and Auto-save Directories
-Create these directories, used later, to store backups and suto-saves.
+Create these directories, used later, to store backups and auto-saves.
 
 #+BEGIN_SRC emacs-lisp
   ;; Backups Directory.

@@ -91,6 +91,7 @@
  '(inhibit-startup-screen t)
  '(kept-new-versions 6)
  '(mail-citation-hook nil)
+ '(menu-bar-mode nil)
  '(message-cite-function (quote message-cite-original))
  '(message-cite-reply-position (quote below))
  '(message-cite-style (quote message-cite-style-gmail))
@@ -124,6 +125,7 @@
  '(org-src-fontify-natively t)
  '(org-src-tab-acts-natively t)
  '(org-startup-indented t)
+ '(org-use-sub-superscripts (quote {}))
  '(package-selected-packages
    (quote
     (emmet-mode skewer-mode company-web-html company-web web-mode material-theme use-package org-gcal engine-mode org-bullets magit powerline)))
@@ -152,6 +154,7 @@
      ("M-d" . term-send-delete-word)
      ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete))))
+ '(tool-bar-mode nil)
  '(tramp-default-method "ssh")
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
@@ -181,7 +184,7 @@
  '(version-control t)
  '(visual-fill-column-fringes-outside-margins nil)
  '(visual-fill-column-width 79)
- '(web-mode-auto-close-style 2)
+ '(web-mode-auto-close-style 1)
  '(web-mode-markup-indent-offset 2)
  '(weechat-color-list
    (quote
@@ -197,11 +200,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "PfEd" :family "Inconsolata"))))
+ '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "ADBO" :family "Source Code Variable"))))
  '(whitespace-empty ((t (:background "dark gray"))))
  '(whitespace-hspace ((t (:background "#4F4F4F" :foreground "gainsboro"))))
  '(whitespace-indentation ((t (:background "#3F3F3F" :foreground "#F0DFAF"))))
- '(whitespace-line ((t (:background "#3F3F3F" :foreground "orange red"))))
+ '(whitespace-line ((t (:background "#3F3F3F" :foreground "orange
+ red"))))
  '(whitespace-newline ((t (:foreground "dark gray"))))
  '(whitespace-space ((t (:background "#3F3F3F" :foreground "gainsboro"))))
  '(whitespace-trailing ((t (:background "#3F3F3F" :foreground "yellow")))))
